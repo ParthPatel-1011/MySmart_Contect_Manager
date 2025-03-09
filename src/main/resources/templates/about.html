@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This is about page</h1>
-
-    <!-- using fragment -->
-    <div th:replace="~{base :: parent(5,6)}"></div>
-
-</body>
+<html th:replace="~{base :: parent(~{::#content},~{::title},~{})}">
+    <head>
+        <title>MySCM-About</title>
+    </head>
+    <body>
+        <div id="content">
+            <h1>About page</h1>
+        </div>
+    </body>
 </html>

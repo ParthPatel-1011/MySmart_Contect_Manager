@@ -1,6 +1,42 @@
-<div th:fragment="parent(x,y)">
-    <h1>This is  parent fragment</h1>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur illo adipisci porro officiis corporis nobis ad eligendi dolorum reiciendis exercitationem temporibus, magnam enim veniam error quae? Quaerat dignissimos, sit nihil facere, quasi porro id eaque ullam eveniet distinctio libero in ipsa dolorum, sint obcaecati aliquid numquam praesentium quod odio iste.</p>
-    <h1>Value of x is <span th:text="${x}"></span> and y is <span th:text="${y}"></span></h1>
+<!DOCTYPE html>
+<html lang="en" th:fragment="parent(content,title,script)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</div>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link data-th-href="@{'/css/output.css'}" rel="stylesheet" />
+
+    <title th:replace="${title}">MySCM</title>
+</head>
+<body>
+    <!-- commen Heaser -->
+
+    <ul class="p-4">
+        <li>
+            <a th:href="@{'/home'}">Home</a>
+        </li>
+        <li>
+            <a th:href="@{'/about'}">About</a>
+        </li>
+        <li>
+            <a th:href="@{'/services'}">Services</a>
+        </li>
+    </ul>
+
+    <!-- Dynamic main content -->
+    <div class="p-4">
+        <section th:replace="${content}"></section>
+    </div>
+
+    <!-- commen Footer -->
+
+    <footer class="p-4">
+        Fotter: My Footer
+    </footer>
+
+    <!-- flow bite content -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <th:block th:replace="${script}"></th:block>
+</body>
+</html>

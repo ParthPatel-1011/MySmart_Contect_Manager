@@ -8,14 +8,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.scm.entities.User;
 import com.scm.forms.UserForm;
+import com.scm.services.UserService;
 
 
 @Controller
 public class PageController {
 
     @Autowired
-    // private UserService userService;
+    private UserService userService;
 
     @RequestMapping("/home")
     public String home(Model model){
@@ -60,17 +62,27 @@ public class PageController {
     }
 
     // prosesing register
-    @RequestMapping(value = "/do-register", method=RequestMethod.POST)
+    @RequestMapping(value = "/do_register", method=RequestMethod.POST)
     public String processRegister(@ModelAttribute UserForm userForm) {
         // fetch form data
         // validate form data
         // save to database
+        User user = User.builder()
+        .name(userForm.getName())
+        .email(userForm.getEmail())
+        .password(userForm.getPassword())
+        .about(userForm.getAbout())
+        .phoneNumber(userForm.getPhoneNumber())
+        .profilePic("https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg")
+        .build();
+
+        User savedUser = userService.saveUser(user);
 
         // user service
 
         // message : registration succsesfull
         //redirecct another page
-        return "redirect:/register";
+        return "redirect:/home";
     }
     
 }

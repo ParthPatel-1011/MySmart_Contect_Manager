@@ -97,9 +97,9 @@ public class PageController {
 
         // message : registration succsesfull
 
-        // MessageBuilder message=Message.builder().content("Register Succesful").type(MessageType.green);
+        Message message=Message.builder().content("Register Succesful").type(MessageType.green).build();
 
-        session.setAttribute("message",Message.builder().content("Register Succesful").type(MessageType.green));
+        session.setAttribute("message",message);
         //redirecct another page
         return "redirect:/register";
     }
